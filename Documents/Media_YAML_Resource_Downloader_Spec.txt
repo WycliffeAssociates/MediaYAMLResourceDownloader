@@ -1,0 +1,72 @@
+Create a script to assemble assets for Resource Containers (Sponsor: Joe S) 
+
+NEED: Resource Containers need to be created on the fly building on the assets available in the Source Audio Server and WACS repos 
+
+ 
+
+DESCRIPTION:  It is not practical to anticipate and store all the possible combination of source materials in resource containers that could be desired by users of Orature.  Instead an app should poll the repos and source audio server to offer what is available for a given GL language and create the resource container on the fly.  Then this app should bundle and deliver it to the user. 
+
+ 
+
+Participants:
+
+Notes:
+Good Example of a file format - includes version info.
+Unfolding Word - media.yaml
+
+https://git.door43.org/unfoldingWord/en_obs/src/branch/master/media.yaml
+
+Check with Christine - about the media.yaml files they create for: ULB
+
+Resource Container Docs:
+
+https://resource-container.readthedocs.io/en/latest/
+
+This site is the official documentation for Door43’s Resource Container specification. Resource Containers (RCs) are the building blocks of content in the Door43 eco-system.
+
+============ Question: How to get version info?
+===== Answer: According to the documentation: Check the Manifest file
+===== However: The sample manifest files don't seem to contain a version, only {latest}
+
+
+Variable Expansion
+
+The value of the url key may also include variables to make the path dynamic. However, the variables are limited to keys within the media block and only scalar (non-list) values are allowed. e.g. you can use the version key but not contributor since contributor is not a scalar value.
+
+Additionally, you may map the version key to the version found in the Manifest File by settings it’s value to {latest}.
+
+Example:
+
+identifier: 'pdf'
+version: '{latest}'
+contributor: []
+url: 'http://cdn.door43.org/en/ta/v1/{identifier}/en_ta_v{version}.pdf'
+
+===== Question: How to get the list of gateway languages?
+--- Read the ?.JSON file from the website in real time, download and parse it? No, info isn't in that file.
+--- UPDATE - Need to use the static list for now.
+--- FUTURE: Call the future to be designed API which would get the list of gateway languages.
+
+http://bibleineverylanguage.org/wp-content/themes/bb-theme-child/data/translations.json
+
+===== Question: How to map a GW to a specific repository
+
+DCS/alexandre_brazil/pt-br_1ch_text_ulb
+
+https://git.door43.org/alexandre_brazil/pt-br_1ch_text_ulb
+
+Read On Web:
+https://live.door43.org/u/alexandre_brazil/pt-br_1ch_text_ulb/ef35d359e6/
+
+ULB
+https://content.bibletranslationtools.org/WA-Catalog/pt-br_ulb
+
+OBS
+https://git.door43.org/unfoldingWord/fr_ulb
+
+8/12/2020
+https://content.bibletranslationtools.org/WA-Catalog/en_ulb/raw/branch/master/manifest.yaml
+
+https://content.bibletranslationtools.org/WA-Catalog/en_ulb/raw/branch/master/media.yaml
+
+
